@@ -14,7 +14,7 @@ class PorkBunResponse():
         return self.status_code == 200 and self.status_text == 'success'
     
     def __str__(self):
-        return f"HTTP status: {self.status_code} Porkbun API status:{self.status_text}"
+        return f"HTTP status: {self.status_code} Porkbun API status:{self.status_text}\n{self.data}"
 
 def get_pb_response(res: requests.Response):
     try:
@@ -74,7 +74,7 @@ try:
     public_ip = ping_response.data['yourIp']
     print(f'Public IP: {public_ip}')
 
-    previous_ip = get_previous_public_ip
+    previous_ip = get_previous_public_ip(public_ip_path)
     print(f'Previous public IP: {previous_ip}')
     if previous_ip == public_ip:
         print(f'Previous public IP matches current. No updates will be preformed.')
