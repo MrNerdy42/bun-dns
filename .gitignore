@@ -57,8 +57,9 @@ src/testTestingRootWkspc/coverageWorkspace/.coverage
 # ignore ai artifacts generated and placed in this folder
 ai-artifacts/*
 
-# ignore environment variable file
+# ignore environment variable files
 .env
+.bashenv
 
 # ignore generated files
 previous-ip
