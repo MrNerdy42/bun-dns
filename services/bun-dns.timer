@@ -1,0 +1,10 @@
+[Unit]
+Description=Dynamic DNS Timer
+
+[Timer]
+Unit=bun-dns.service
+OnBootSec=30s
+OnUnitActiveSec=1h
+
+[Install]
+WantedBy=timers.target

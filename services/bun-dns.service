@@ -1,0 +1,10 @@
+[Unit]
+Description=Dynamic DNS
+
+[Service]
+Type=oneshot
+User=joseph
+WorkingDirectory = /home/joseph/dyndns
+ExecStart=/bin/python3 /home/joseph/dyndns/dyndns.py
+StandardOutput=inherit
+StandardError=inherit
