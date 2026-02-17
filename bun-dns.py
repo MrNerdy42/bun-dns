@@ -1,29 +1,11 @@
 import os, requests, sys
 from datetime import datetime
-from typing import Any
 
 class ConfigurationError(Exception):
     pass
 
-class PorkBunResponse():
-    def __init__(self, status_code: int, status_text: str | None, data: Any | None):
-        self.status_code = status_code
-        self.status_text = status_text.lower() if status_text else None
-        self.data: Any = data or {}
-    def successful(self):
-        return self.status_code == 200 and self.status_text == 'success'
-    
-    def __str__(self):
-        return f"HTTP status: {self.status_code} Porkbun API status:{self.status_text}\n{self.data}"
-
-def get_pb_response(res: requests.Response):
-    try:
-        response_json = res.json()
-        status_text = response_json['status']
-    except:
-        status_text = None
-        response_json = None
-    return PorkBunResponse(res.status_code, status_text, response_json)
+def get_response_str(res: requests.Response):
+    return f'<Response http-status={res.status_code}>{res.text}</Response>'
 
 def send_pb_request(url: str, secret_key: str, public_key: str, **data: str):
     req = {
@@ -31,7 +13,7 @@ def send_pb_request(url: str, secret_key: str, public_key: str, **data: str):
         'apikey':public_key,
         **data
     }
-    return get_pb_response(requests.post(url, json=req))
+    return requests.post(url, json=req)
 
 def get_previous_public_ip(file: str):
     with open(file, 'r') as cfg:
@@ -67,15 +49,18 @@ ping_endpoint = 'https://api-ipv4.porkbun.com/api/json/v3/ping'
 try:
     ping_response = send_pb_request(ping_endpoint, secret_key, public_key)
 
-    if not ping_response.successful():
-        print(ping_response, file=sys.stderr)
+    if ping_response.status_code != 200:
+        print(get_response_str(ping_response), file=sys.stderr)
         sys.exit(200)
+    print(get_response_str(ping_response))
 
-    public_ip = ping_response.data['yourIp']
+
+    public_ip = ping_response.json()['yourIp']
     print(f'Public IP: {public_ip}')
 
     previous_ip = get_previous_public_ip(public_ip_path)
     print(f'Previous public IP: {previous_ip}')
+
     if previous_ip == public_ip:
         print(f'Previous public IP matches current. No updates will be preformed.')
         sys.exit(0)
@@ -88,11 +73,12 @@ try:
 
         notes = f'Last updated {datetime.now()}'
         update_response = send_pb_request(url, secret_key, public_key, content=public_ip, notes=notes)
-        if not update_response.successful():
-            print(update_response, file=sys.stderr)
+
+        if update_response.status_code != 200:
+            print(get_response_str(update_response), file=sys.stderr)
             sys.exit(300)
 
-        print(update_response)
+        print(get_response_str(update_response))
         print(f'DNS record for {sub_domain_path}{"" if sub_domain_path == "" else "."}{domain} updated successfully.')
 
     write_new_public_ip(public_ip_path, public_ip)
