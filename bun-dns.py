@@ -1,5 +1,5 @@
-import requests, sys
-import os
+import os, requests, sys
+from datetime import datetime
 from typing import Any
 
 class ConfigurationError(Exception):
@@ -86,7 +86,8 @@ try:
         url = f'{dns_endpoint}/{domain}/A/{sub_domain_path}'
         print(f'Request url: {url}')
 
-        update_response = send_pb_request(url, secret_key, public_key, content=public_ip)
+        notes = f'Last updated {datetime.now()}'
+        update_response = send_pb_request(url, secret_key, public_key, content=public_ip, notes=notes)
         if not update_response.successful():
             print(update_response, file=sys.stderr)
             sys.exit(300)
@@ -98,6 +99,7 @@ try:
 except Exception as e:
     print('AN UNEXPECTED ERROR OCURRED', sys.stderr)
     print(e)
+    sys.exit(1000)
 
 
 
