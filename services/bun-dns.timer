@@ -1,5 +1,5 @@
 [Unit]
-Description=Dynamic DNS Timer
+Description=Timer for Porkbun DNS Updater
 
 [Timer]
 Unit=bun-dns.service

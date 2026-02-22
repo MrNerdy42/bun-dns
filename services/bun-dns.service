@@ -1,11 +1,11 @@
 [Unit]
-Description=Dynamic DNS
+Description=Porkbun DNS Updater
 
 [Service]
 Type=oneshot
 DynamicUser=yes
 StateDirectory = %N
 WorkingDirectory = %S/%N
-ExecStart=/bin/python3 /home/joseph/dyndns/dyndns.py
+ExecStart=/opt/bun-dns/start.sh
 StandardOutput=inherit
 StandardError=inherit
