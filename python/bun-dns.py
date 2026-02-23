@@ -43,7 +43,7 @@ except KeyError as e:
     print(f'Environment variable {e.args[0]} was not found.', file=sys.stderr)
     sys.exit(100)
 
-public_ip_path = './publicip' # relative to the systemd StateDirectory
+public_ip_path = './public-ip' # relative to the systemd StateDirectory
 dns_endpoint = 'https://api.porkbun.com/api/json/v3/dns/editByNameType'
 ping_endpoint = 'https://api-ipv4.porkbun.com/api/json/v3/ping'
 
