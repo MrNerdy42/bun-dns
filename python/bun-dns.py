@@ -36,13 +36,13 @@ public_key: str
 
 try:
     domain = os.environ['BUN_DNS_DOMAIN']
-    subdomain_config_path = os.environ['BUN_DNS_SUBDOMAIN_CONFIG_PATH']
     secret_key = os.environ['PORKBUN_SECRET_KEY']
     public_key = os.environ['PORKBUN_PUBLIC_KEY']  
 except KeyError as e:
     print(f'Environment variable {e.args[0]} was not found.', file=sys.stderr)
     sys.exit(100)
 
+subdomain_config_path = '/etc/bun-dns/domains.config'
 public_ip_path = './public-ip' # relative to the systemd StateDirectory
 dns_endpoint = 'https://api.porkbun.com/api/json/v3/dns/editByNameType'
 ping_endpoint = 'https://api-ipv4.porkbun.com/api/json/v3/ping'
