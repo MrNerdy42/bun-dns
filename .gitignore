@@ -62,4 +62,4 @@ ai-artifacts/*
 .bashenv
 
 # ignore generated files
-previous-ip
+public-ip
