@@ -2,7 +2,7 @@ Source: bun-dns
 Section: python
 Priority: optional
 Maintainer: Joseph Redmond <>
-Build-Depends: debhelper-compat (= 12)
+Build-Depends: debhelper-compat (= 13), dh-python
 Standards-Version: 4.5.0
 Homepage: https://github.com/MrNerdy42/bun-dns
 
