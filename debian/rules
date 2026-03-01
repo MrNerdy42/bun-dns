@@ -12,3 +12,7 @@ override_dh_auto_install:
 	python3 -m venv debian/bun-dns/opt/bun-dns/venv
 	debian/bun-dns/opt/bun-dns/venv/bin/pip install -r requirements.txt
 	cp bun-dns.py debian/bun-dns/opt/bun-dns/
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf debian/bun-dns/
