@@ -7,7 +7,6 @@ Build-Depends:
  dh-python,
  pybuild-plugin-pyproject,
  python3-all,
- python3-setuptools,
 Standards-Version: 4.7.3
 Homepage: https://github.com/MrNerdy42/bun-dns
 

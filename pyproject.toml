@@ -4,8 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bun-dns"
-version = "1.0"
+version = "1.0.0"
+requires-python = ">=3.12"
 dependencies = [
     "requests"
 ]
 
+[project.scripts]
+bun-dns = "dun-dns.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["bun-dns"]
