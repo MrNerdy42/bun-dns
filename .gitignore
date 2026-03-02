@@ -63,3 +63,10 @@ ai-artifacts/*
 
 # ignore generated files
 public-ip
+
+# debuild artifacts
+debian/.debhelper/
+debian/files
+debian/*.log
+debian/*.substvars
+debian/debhelper-build-stamp
