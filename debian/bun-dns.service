@@ -6,6 +6,6 @@ Type=oneshot
 DynamicUser=yes
 StateDirectory = %N
 WorkingDirectory = %S/%N
-ExecStart=/opt/bun-dns/start.sh
+ExecStart=/usr/bin/bun-dns
 StandardOutput=inherit
 StandardError=inherit
