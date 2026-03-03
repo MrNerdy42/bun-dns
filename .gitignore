@@ -71,3 +71,7 @@ debian/*.log
 debian/*.substvars
 debian/debhelper-build-stamp
 .pybuild/*
+*.egg-info
+build/*
+debian/bun-dns
+*.debhelper
