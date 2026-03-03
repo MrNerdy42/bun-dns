@@ -1,8 +1,8 @@
 Source: bun-dns
 Section: devel
 Priority: optional
-Maintainer: Joseph Redmond <>
-Build-Depends: 
+Maintainer: Joseph Redmond <joseph@therednet.xyz>
+Build-Depends:
  debhelper-compat (= 13),
  dh-python,
  pybuild-plugin-pyproject,
@@ -13,7 +13,10 @@ Homepage: https://github.com/MrNerdy42/bun-dns
 Package: bun-dns
 Architecture: all
 Multi-Arch: foreign
-Depends: 
-  ${misc:Depends},
-  ${shlibs:Depends}
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ ${shlibs:Depends},
 Description: auto-update Porkbun DNS records
+  Automatically update Porkbun DNS records to point
+  to the current public IP of the machine (IPv4 only).
