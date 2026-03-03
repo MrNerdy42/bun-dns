@@ -18,5 +18,5 @@ Depends:
  ${python3:Depends},
  ${shlibs:Depends},
 Description: auto-update Porkbun DNS records
-  Automatically update Porkbun DNS records to point
-  to the current public IP of the machine (IPv4 only).
+ Automatically update Porkbun DNS records to point
+ to the current public IP of the machine (IPv4 only).
