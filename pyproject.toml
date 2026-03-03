@@ -11,8 +11,7 @@ dependencies = [
 ]
 
 [project.scripts]
-bun-dns = "dun-dns.main:main"
+bun-dns = "bun_dns.main:main"
 
 [tool.setuptools]
-package-dir = {"" = "src"}
 packages = ["bun-dns"]
