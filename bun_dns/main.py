@@ -46,6 +46,12 @@ def main():
     ping_endpoint = 'https://api-ipv4.porkbun.com/api/json/v3/ping'
 
     try:
+        force_update: bool
+        try:
+            force_update = sys.argv[1] == '-f'
+        except:
+            force_update = False
+
         Path(public_ip_path).touch(0o664, exist_ok=True)
         ping_response = send_pb_request(ping_endpoint, secret_key, public_key)
 
@@ -61,7 +67,7 @@ def main():
         previous_ip = get_previous_public_ip(public_ip_path)
         print(f'Previous public IP: {previous_ip}')
 
-        if previous_ip == public_ip:
+        if not force_update and previous_ip == public_ip:
             print(f'Previous public IP matches current. No updates will be preformed.')
             sys.exit(0)
 

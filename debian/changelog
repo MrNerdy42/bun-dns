@@ -1,5 +1,9 @@
-bun-dns (1.0.0) UNRELEASED; urgency=low
+bun-dns (1.1.0) UNRELEASED; urgency=low
 
+  [ Joseph Redmond ]
   * Initial release.
+
+  [ Joseph Redmond ]
+  * Added parameter '-f' to force an update.
 
  -- Joseph Redmond <joseph@therednet.xyz>  Sun, 01 Mar 2026 12:36:26 -0500
